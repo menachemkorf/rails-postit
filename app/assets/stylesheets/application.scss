@@ -12,9 +12,9 @@
  *= require_tree .
  */
 
- @import "bootstrap";
+@import "bootstrap";
 
- .container {
+.container {
   margin-left: 135px
 }
 
@@ -31,7 +31,7 @@ div.nav_item {
   float: left;
 }
 
-.label  {
+.label, .badge  {
   a, a:hover, a:focus {
     color: #fff;
     text-decoration: none;
