@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
   validates :password, presence: true, on: :create
 
   slugable_column :username
+
+  def admin?
+    self.role == 'admin'
+  end
 end

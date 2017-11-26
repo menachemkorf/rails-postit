@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :vote]
   before_action :require_login, except: [:index, :show]
+  before_action :require_owner, only: [:edit, :update]
 
   def index
     @posts = Post.all.sort_by(&:total_votes).reverse
@@ -65,5 +66,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :url, :description, category_ids: [])
+  end
+
+  def require_owner
+    deny_access unless logged_in? && (current_user == @post.user || current_user.admin?)
   end
 end
